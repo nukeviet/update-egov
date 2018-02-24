@@ -38,23 +38,37 @@ $nv_update_config['lang']['vi'] = array();
 // Tiếng Việt
 $nv_update_config['lang']['vi']['nv_up_modnews4301'] = 'Cập nhật module news lên 4.3.01';
 $nv_update_config['lang']['vi']['nv_up_modlang4301'] = 'Cập nhật module language lên 4.3.01';
-$nv_update_config['lang']['vi']['nv_up_finish'] = 'Cập nhật CSDL lên phiên bản 4.3.01';
+$nv_update_config['lang']['vi']['nv_up_modorgans4301'] = 'Cập nhật module organs lên 4.3.01';
+$nv_update_config['lang']['vi']['nv_up_modlaws4301'] = 'Cập nhật module laws lên 4.3.01';
+$nv_update_config['lang']['vi']['nv_up_finish'] = 'Cập nhật hệ thống lên phiên bản 1.1.00';
 
 $nv_update_config['tasklist'] = array();
 $nv_update_config['tasklist'][] = array(
-    'r' => '4.3.01',
+    'r' => '1.1.00',
     'rq' => 2,
     'l' => 'nv_up_modnews4301',
     'f' => 'nv_up_modnews4301'
 );
 $nv_update_config['tasklist'][] = array(
-    'r' => '4.3.01',
+    'r' => '1.1.00',
     'rq' => 2,
     'l' => 'nv_up_modlang4301',
     'f' => 'nv_up_modlang4301'
 );
 $nv_update_config['tasklist'][] = array(
-    'r' => '4.3.01',
+    'r' => '1.1.00',
+    'rq' => 2,
+    'l' => 'nv_up_modorgans4301',
+    'f' => 'nv_up_modorgans4301'
+);
+$nv_update_config['tasklist'][] = array(
+    'r' => '1.1.00',
+    'rq' => 2,
+    'l' => 'nv_up_modlaws4301',
+    'f' => 'nv_up_modlaws4301'
+);
+$nv_update_config['tasklist'][] = array(
+    'r' => '1.1.00',
     'rq' => 2,
     'l' => 'nv_up_finish',
     'f' => 'nv_up_finish'
@@ -147,6 +161,87 @@ function nv_up_modlang4301()
 }
 
 /**
+ * nv_up_modorgans4301()
+ *
+ * @return
+ *
+ */
+function nv_up_modorgans4301()
+{
+    global $nv_update_baseurl, $db, $db_config, $nv_Cache, $global_config, $nv_update_config;
+    $return = array(
+        'status' => 1,
+        'complete' => 1,
+        'next' => 1,
+        'link' => 'NO',
+        'lang' => 'NO',
+        'message' => ''
+    );
+    // Duyệt tất cả các ngôn ngữ
+    foreach ($global_config['allow_sitelangs'] as $lang) {
+        // Lấy tất cả các module và module ảo của nó
+        $mquery = $db->query("SELECT title, module_data FROM " . $db_config['prefix'] . "_" . $lang . "_modules WHERE module_file = 'organs'");
+        while (list ($mod, $mod_data) = $mquery->fetch(3)) {
+            // Thêm bản phân quyền quản trị
+            try {
+                $db->query("CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_admins (
+                  userid int(11) UNSIGNED NOT NULL DEFAULT '0',
+                  organid int(11) NOT NULL DEFAULT '0',
+                  admin tinyint(4) NOT NULL DEFAULT '0',
+                  add_content tinyint(4) NOT NULL DEFAULT '0',
+                  edit_content tinyint(4) NOT NULL DEFAULT '0',
+                  status_content tinyint(4) NOT NULL DEFAULT '0',
+                  del_content tinyint(4) NOT NULL DEFAULT '0'
+                ) ENGINE=MyISAM;");
+            } catch (PDOException $e) {
+                trigger_error($e->getMessage());
+            }
+        }
+    }
+    return $return;
+}
+
+/**
+ * nv_up_modlaws4301()
+ *
+ * @return
+ *
+ */
+function nv_up_modlaws4301()
+{
+    global $nv_update_baseurl, $db, $db_config, $nv_Cache, $global_config, $nv_update_config;
+    $return = array(
+        'status' => 1,
+        'complete' => 1,
+        'next' => 1,
+        'link' => 'NO',
+        'lang' => 'NO',
+        'message' => ''
+    );
+    // Duyệt tất cả các ngôn ngữ
+    foreach ($global_config['allow_sitelangs'] as $lang) {
+        // Lấy tất cả các module và module ảo của nó
+        $mquery = $db->query("SELECT title, module_data FROM " . $db_config['prefix'] . "_" . $lang . "_modules WHERE module_file = 'laws'");
+        while (list ($mod, $mod_data) = $mquery->fetch(3)) {
+            // Thêm bản phân quyền quản trị
+            try {
+                $db->query("CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $mod_data . "_admins (
+                  userid int(11) UNSIGNED NOT NULL DEFAULT '0',
+                  subjectid smallint(4) NOT NULL DEFAULT '0',
+                  admin tinyint(4) NOT NULL DEFAULT '0',
+                  add_content tinyint(4) NOT NULL DEFAULT '0',
+                  edit_content tinyint(4) NOT NULL DEFAULT '0',
+                  del_content tinyint(4) NOT NULL DEFAULT '0'
+                ) ENGINE=MyISAM;");
+            } catch (PDOException $e) {
+                trigger_error($e->getMessage());
+            }
+        }
+    }
+    return $return;
+}
+
+/**
  * nv_up_finish()
  *
  * @return
@@ -164,14 +259,50 @@ function nv_up_finish()
         'message' => ''
     );
 
-    nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/compatibility.js');
-    nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/l10n.js');
-    nv_deletefile(NV_ROOTDIR . '/assets/editors/ckeditor/plugins/clipboard', true);
+    // Thêm cấu hình xem trước giao diện
+    foreach ($global_config['allow_sitelangs'] as $lang) {
+        try {
+            $db->query("INSERT INTO " . NV_CONFIG_GLOBALTABLE . " (lang, module, config_name, config_value) VALUES ('" . $lang . "', 'global', 'preview_theme', '');");
+        } catch (PDOException $e) {
+            trigger_error($e->getMessage());
+        }
+    }
+
+    // Cập nhật lại ID các ứng dụng
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET id=28 WHERE type='module' and basename='faq'");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET id=254 WHERE type='module' and basename='laws'");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET id=374 WHERE type='module' and basename='organs'");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET id=64 WHERE type='module' and basename='videoclips'");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET id=391 WHERE type='theme' and basename='egov'");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET id=392 WHERE type='theme' and basename='mobile_egov'");
+
+    // Cập nhật lại cấu hình block giao diện
+    foreach ($global_config['allow_sitelangs'] as $lang) {
+        $sql = "SELECT * FROM " . $db_config['prefix'] . "_" . $lang . "_blocks_groups WHERE file_name='global.bootstrap.php' AND module='theme' AND theme='egov'";
+        $result = $db->query($sql);
+        $block = $result->fetch();
+        if (!empty($block) and !empty($block['config'])) {
+            $block['config'] = unserialize($block['config']);
+            $block['config']['submenu_width'] = 200;
+            $block['config']['wraptext'] = 0;
+            $block['config'] = serialize($block['config']);
+            try {
+                $db->query("UPDATE " . $db_config['prefix'] . "_" . $lang . "_blocks_groups SET config=" . $db->quote($block['config']) . " WHERE bid=" . $block['bid']);
+            } catch (PDOException $e) {
+                trigger_error($e->getMessage());
+            }
+        }
+    }
+
+    //nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/compatibility.js');
+    //nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/l10n.js');
+    //nv_deletefile(NV_ROOTDIR . '/assets/editors/ckeditor/plugins/clipboard', true);
 
     // Cập nhật phiên bản
     $db->query("UPDATE " . NV_CONFIG_GLOBALTABLE . " SET config_value='" . $nv_update_config['to_version'] . "' WHERE lang='sys' AND module='global' AND config_name='version'");
-    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET  version='" . $nv_update_config['to_version'] . " " . $nv_update_config['release_date'] . "' WHERE type='module' and basename IN ('banners', 'comment','contact','feeds','freecontent','menu','news','page','seek','statistics','users','voting', 'two-step-verification')");
-    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET  version='" . $nv_update_config['to_version'] . " " . $nv_update_config['release_date'] . "' WHERE type='theme' and basename IN ('default', 'mobile_default')");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET version='4.3.01 1517475600' WHERE type='module' and basename IN ('banners', 'comment','contact','feeds','freecontent','menu','news','page','seek','statistics','users','voting', 'two-step-verification', 'laws', 'organs', 'videoclips')");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET version='4.3.01 1517475600' WHERE type='theme' and basename IN ('default', 'mobile_default')");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET version='" . $nv_update_config['to_version'] . " " . $nv_update_config['release_date'] . "' WHERE type='theme' and basename IN ('egov', 'mobile_egov')");
 
     nv_save_file_config_global();
 
