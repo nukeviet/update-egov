@@ -26,4 +26,3 @@ Nếu thất bại hãy thử cách cập nhật thủ công bên dưới.
 
 Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.1.00/update-egov-to-1.1.00.zip
 Giải nén và Upload các file trong gói cập nhật với cấu trúc của NukeViet Egov, sau đó vào admin để tiến hành cập nhật.
-# update-egov
