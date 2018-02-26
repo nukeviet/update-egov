@@ -294,9 +294,10 @@ function nv_up_finish()
         }
     }
 
-    //nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/compatibility.js');
-    //nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/l10n.js');
-    //nv_deletefile(NV_ROOTDIR . '/assets/editors/ckeditor/plugins/clipboard', true);
+    nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/compatibility.js');
+    nv_deletefile(NV_ROOTDIR . '/assets/js/pdf.js/l10n.js');
+    nv_deletefile(NV_ROOTDIR . '/assets/editors/ckeditor/plugins/clipboard', true);
+    nv_deletefile(NV_ROOTDIR . '/themes/mobile_default/mobile_default.png');
 
     // Cập nhật phiên bản
     $db->query("UPDATE " . NV_CONFIG_GLOBALTABLE . " SET config_value='" . $nv_update_config['to_version'] . "' WHERE lang='sys' AND module='global' AND config_name='version'");
