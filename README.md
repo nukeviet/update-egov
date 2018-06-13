@@ -1,6 +1,6 @@
-# Hướng dẫn cập nhật từ 1.0.05 lên NukeViet Egov 1.1.00
+# Hướng dẫn cập nhật từ NukeViet Egov 1.0.05, 1.1.00 lên NukeViet Egov 1.1.01
 
-Nếu phiên bản NukeViet Egov 4 của bạn nhỏ hơn 1.0.05 bạn cần tìm hướng dẫn nâng cấp lên phiên bản 1.0.05 trước khi tiến hành các bước tiếp theo.
+Nếu phiên bản NukeViet Egov của bạn nhỏ hơn 1.0.05 bạn cần tìm hướng dẫn nâng cấp lên phiên bản 1.0.05 trước khi tiến hành các bước tiếp theo.
 
 ## Nâng cấp hệ thống:
 
@@ -24,5 +24,5 @@ Nếu thất bại hãy thử cách cập nhật thủ công bên dưới.
 
 #### Cập nhật thủ công:
 
-Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.1.00/update-egov-to-1.1.00.zip
+Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.1.01/update-egov-to-1.1.01.zip
 Giải nén và Upload các file trong gói cập nhật với cấu trúc của NukeViet Egov, sau đó vào admin để tiến hành cập nhật.
