@@ -869,6 +869,14 @@ function nv_up_finish()
     nv_deletefile(NV_ROOTDIR . '/themes/admin_default/images/vertical_menu_bg.jpg');
     nv_deletefile(NV_ROOTDIR . '/assets/js/select2/select2-bootstrap.min.css');
 
+    nv_deletefile(NV_ROOTDIR . '/themes/mobile_egov/css/comment.css');
+    nv_deletefile(NV_ROOTDIR . '/themes/mobile_egov/modules/comment', true);
+
+    nv_deletefile(NV_ROOTDIR . '/themes/default/js/faq.js');
+    nv_deletefile(NV_ROOTDIR . '/themes/default/modules/faq/.htaccess');
+    nv_deletefile(NV_ROOTDIR . '/themes/admin_default/modules/laws/.htaccess');
+    nv_deletefile(NV_ROOTDIR . '/themes/default/modules/laws/.htaccess');
+
     // Cập nhật phiên bản Egov
     $db->query("UPDATE " . NV_CONFIG_GLOBALTABLE . " SET config_value='" . $nv_update_config['to_version'] . "' WHERE lang='sys' AND module='global' AND config_name='version'");
 
