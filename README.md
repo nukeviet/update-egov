@@ -9,6 +9,7 @@ Nếu phiên bản NukeViet Egov của bạn nhỏ hơn 1.1.01 bạn cần tìm 
 - Backup toàn bộ CSDL và các file code, tránh tình trạng có vấn đề phát sinh site không hoạt động được sau update.
 - Nếu site của bạn đã tùy biến các thư mục bằng cách sửa file includes/constants.php hãy đưa về mặc định, sau nâng cấp tiến hành cấu hình trở lại.
 - Trong quá trình cập nhật bị đẩy ra, bạn đăng nhập lại quản trị.
+- Nếu khi ấn vào liên kết cập nhật trong quản trị bạn bị chuyển về trang chủ, bạn tiến hành tắt trình duyệt và mở lại.
 
 ### Bước 2: Thực hiện cập nhật:
 
