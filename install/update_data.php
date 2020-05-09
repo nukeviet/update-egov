@@ -53,7 +53,7 @@ $nv_update_config['lang']['vi']['nv_up_modusers4307'] = 'Cập nhật module use
 $nv_update_config['lang']['vi']['nv_up_sys4307'] = 'Cập nhật core lên 4.3.07';
 $nv_update_config['lang']['vi']['nv_up_sys4308'] = 'Cập nhật core lên 4.3.08';
 $nv_update_config['lang']['vi']['nv_up_sys4309'] = 'Cập nhật core lên 4.3.09';
-$nv_update_config['lang']['en']['nv_up_sys4400'] = 'Cập nhật core lên 4.4.00';
+$nv_update_config['lang']['vi']['nv_up_sys4400'] = 'Cập nhật core lên 4.4.00';
 $nv_update_config['lang']['vi']['nv_up_modlaws1200'] = 'Cập nhật module laws ở bản 1.2.00';
 $nv_update_config['lang']['vi']['nv_up_modvideoclips1200'] = 'Cập nhật module videoclips ở bản 1.2.00';
 $nv_update_config['lang']['vi']['nv_up_finish'] = 'Cập nhật CSDL lên phiên bản 1.2.00';
@@ -71,8 +71,8 @@ $nv_update_config['lang']['en']['nv_up_sys4307'] = 'Update core to 4.3.07';
 $nv_update_config['lang']['en']['nv_up_sys4308'] = 'Update core to 4.3.08';
 $nv_update_config['lang']['en']['nv_up_sys4309'] = 'Update core to 4.3.09';
 $nv_update_config['lang']['en']['nv_up_sys4400'] = 'Update core to 4.4.00';
-$nv_update_config['lang']['vi']['nv_up_modlaws1200'] = 'Update module laws in 1.2.00';
-$nv_update_config['lang']['vi']['nv_up_modvideoclips1200'] = 'Update module videoclips in 1.2.00';
+$nv_update_config['lang']['en']['nv_up_modlaws1200'] = 'Update module laws in 1.2.00';
+$nv_update_config['lang']['en']['nv_up_modvideoclips1200'] = 'Update module videoclips in 1.2.00';
 $nv_update_config['lang']['en']['nv_up_finish'] = 'Update new version 1.2.00';
 
 $nv_update_config['tasklist'] = [];
@@ -894,7 +894,8 @@ function nv_up_finish()
     type='theme' AND basename IN ('default', 'mobile_default')");
 
     // Phiên bản của các module liên quan
-    // FIXME
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET version='4.3.05 " . $nv_update_config['release_date'] . "' WHERE type='module' AND basename='laws'");
+    $db->query("UPDATE " . $db_config['prefix'] . "_setup_extensions SET version='4.3.03 " . $nv_update_config['release_date'] . "' WHERE type='module' AND basename='videoclips'");
 
     nv_save_file_config_global();
 
