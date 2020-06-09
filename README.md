@@ -1,6 +1,6 @@
-# Hướng dẫn cập nhật từ NukeViet Egov 1.1.01, 1.1.02 lên NukeViet Egov 1.2.00
+# Hướng dẫn cập nhật từ NukeViet Egov 1.2.00 lên NukeViet Egov 1.2.01
 
-Nếu phiên bản NukeViet Egov của bạn nhỏ hơn 1.1.01 bạn cần tìm hướng dẫn nâng cấp lên phiên bản 1.1.01 trước khi tiến hành các bước tiếp theo.
+Nếu phiên bản NukeViet Egov của bạn nhỏ hơn 1.2.00 bạn cần tìm hướng dẫn nâng cấp lên phiên bản 1.2.00 trước khi tiến hành các bước tiếp theo.
 
 ## Nâng cấp hệ thống:
 
@@ -26,18 +26,10 @@ Nếu thất bại hãy thử cách cập nhật thủ công bên dưới.
 
 #### Cập nhật thủ công:
 
-Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.2.00/update-egov-to-1.2.00.zip
+Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.2.01/update-egov-to-1.2.01.zip
 Giải nén và Upload các file trong gói cập nhật với cấu trúc của NukeViet Egov, sau đó vào admin để tiến hành cập nhật.
 
-### Bước 4: Cấu hình lại site.
+### Bước 3: Cấu hình lại site.
 
-- Đăng nhập quản trị tối cao, vào khu vực Công cụ SEO => Cấu hình Meta-Tags xóa bỏ đi các Meta-Tags: robots, googlebot, msnbot (tại cột Tên Nhóm xóa nội dung trong các ô tương ứng và nhấp Thực hiện là có thể xóa được).
-
-**Nếu site của bạn trước khi cập nhật ở bản 1.1.01 thì nên làm các công việc sau:**
-
-- Tìm file config.php Tìm cấu hình sitekey đổi giá trị sitekey (Việc này cần thực hiện để đảm bảo an toàn).
-- Thực hiện dọn dẹp hệ thống để xóa các file log. Bạn có thể thực hiện việc này bằng thao tác: Tại khu vực quản trị chọn **Công cụ web => Dọn dẹp hệ thống**, nhấp vào ô check ở dòng **Xóa các thông báo lỗi** sau đó nhấp **Thực hiện**
-- Vào phần: **Cấu hình -> Cấu hình chung** Lưu thay đổi để hệ thống ghi lại một số thiết lập.
-- Vào phần: **Cấu hình -> Thiết lập an ninh ** Chọn tab **Cấu hình hiển thị captcha** để chọn Loại captcha là reCAPTCHA sau đó khai báo các thông số Site key, Secret key bằng cách đăng ký tài khỏan captcha tại https://www.google.com/recaptcha/admin#list (Ghi chú: Nếu website của bạn chạy trên mạng nội bộ không có Internet thì cấu hình Loại captcha là Captcha mặc định)
-- Nếu site có sử dụng các thư viện bên ngoài như phpoffice/phpspreadsheet thông qua composer, bạcn cần khai báo để composer cập nhật lại
-- Cấu hình lại các mật khẩu đã nhập vào hệ thống như: Tài khoản FTP, SMTP
+- Nếu site có sử dụng các thư viện bên ngoài như `phpoffice/phpspreadsheet` thông qua composer, bạn cần khai báo để composer cập nhật lại
+- Truy cập phần Cấu hình => Thiết lập an ninh để thiết lập chức năng **Cross-Site** và **Giới hạn tên miền** theo nhu cầu.
