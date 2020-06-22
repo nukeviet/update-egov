@@ -18,19 +18,20 @@ $nv_update_config = [];
 $nv_update_config['type'] = 1;
 
 // ID goi cap nhat
-$nv_update_config['packageID'] = 'NVEUD1201';
+$nv_update_config['packageID'] = 'NVEUD1202';
 
 // Cap nhat cho module nao, de trong neu la cap nhat NukeViet, ten thu muc module neu la cap nhat module
 $nv_update_config['formodule'] = '';
 
 // Thong tin phien ban, tac gia, ho tro
-$nv_update_config['release_date'] = 1592038800;
+$nv_update_config['release_date'] = 1592816400;
 $nv_update_config['author'] = 'VINADES.,JSC <contact@vinades.vn>';
-$nv_update_config['support_website'] = 'https://github.com/nukeviet/update-egov/tree/to-1.2.01';
-$nv_update_config['to_version'] = '1.2.01';
+$nv_update_config['support_website'] = 'https://github.com/nukeviet/update-egov/tree/to-1.2.02';
+$nv_update_config['to_version'] = '1.2.02';
 $nv_update_config['allow_old_version'] = [
     '1.2.00',
-    '1.2.01'
+    '1.2.01',
+    '1.2.02'
 ];
 
 // 0:Nang cap bang tay, 1:Nang cap tu dong, 2:Nang cap nua tu dong
@@ -44,13 +45,13 @@ $nv_update_config['lang']['en'] = [];
 $nv_update_config['lang']['vi']['nv_up_modusers4401'] = 'Cập nhật module users lên 4.4.01';
 $nv_update_config['lang']['vi']['nv_up_sys4401'] = 'Cập nhật hệ thống lên 4.4.01';
 
-$nv_update_config['lang']['vi']['nv_up_finish'] = 'Cập nhật CSDL lên phiên bản 1.2.01';
+$nv_update_config['lang']['vi']['nv_up_finish'] = 'Cập nhật CSDL lên phiên bản 1.2.02';
 
 // English
 $nv_update_config['lang']['en']['nv_up_modusers4401'] = 'Update module users to 4.4.01';
 $nv_update_config['lang']['en']['nv_up_sys4401'] = 'Update system to 4.4.01';
 
-$nv_update_config['lang']['en']['nv_up_finish'] = 'Update to new version 1.2.01';
+$nv_update_config['lang']['en']['nv_up_finish'] = 'Update to new version 1.2.02';
 
 $nv_update_config['tasklist'] = [];
 $nv_update_config['tasklist'][] = [
@@ -66,7 +67,7 @@ $nv_update_config['tasklist'][] = [
     'f' => 'nv_up_sys4401'
 ];
 $nv_update_config['tasklist'][] = [
-    'r' => '1.2.01',
+    'r' => $nv_update_config['to_version'],
     'rq' => 2,
     'l' => 'nv_up_finish',
     'f' => 'nv_up_finish'

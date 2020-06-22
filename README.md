@@ -1,4 +1,4 @@
-# Hướng dẫn cập nhật từ NukeViet Egov 1.2.00 lên NukeViet Egov 1.2.01
+# Hướng dẫn cập nhật từ NukeViet Egov 1.2.00, 1.2.01 lên NukeViet Egov 1.2.02
 
 Nếu phiên bản NukeViet Egov của bạn nhỏ hơn 1.2.00 bạn cần tìm hướng dẫn nâng cấp lên phiên bản 1.2.00 trước khi tiến hành các bước tiếp theo.
 
@@ -26,7 +26,7 @@ Nếu thất bại hãy thử cách cập nhật thủ công bên dưới.
 
 #### Cập nhật thủ công:
 
-Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.2.01/update-egov-to-1.2.01.zip
+Download gói cập nhật tại: https://github.com/nukeviet/update-egov/releases/download/to-1.2.02/update-egov-to-1.2.02.zip
 Giải nén và Upload các file trong gói cập nhật với cấu trúc của NukeViet Egov, sau đó vào admin để tiến hành cập nhật.
 
 ### Bước 3: Cấu hình lại site.
